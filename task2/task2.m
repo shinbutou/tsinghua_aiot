@@ -28,12 +28,14 @@ smokers = [];  % 0: non-smoker; 1: smoker
 regions = [];  % 0: NE, 1: NW, 2: SE, 3: SW
 charges = [];
 
+heat = zeros(47, 39) % Figure 5
+
 % Figure 1
 male_charges = zeros(47, 'double');
 female_charges = zeros(47, 'double');
 
 while ischar(tline)
-    disp(tline);
+    %disp(tline);
     line_data = split(tline, ",");
 
     ages(end + 1) = str2double(line_data(1));
@@ -67,9 +69,21 @@ while ischar(tline)
     charges(end + 1) = str2double(line_data(7));
 
     tline = fgetl(fid);
+
+    % Figure 5
+    age_index = int64(str2double(line_data(1)));
+    bmi_index = int64(str2double(line_data(3)));
+    charge_var = str2double(line_data(7));
+    charge_cur = heat(age_index - 17, bmi_index - 14);
+    
+    if charge_var > charge_cur
+        heat(age_index - 17, bmi_index - 14) = charge_var;
+    else
+        disp(charge_var);
+    end
+
 end
 fclose(fid);
-
 
 % Figure 1 Min Charge of Each Age
 
@@ -80,3 +94,4 @@ fclose(fid);
 % Figure 4 Scatter of Smoker, BMI, and Children 
 
 % Figure 5 Heatmap of Age, BMI, and Charge
+

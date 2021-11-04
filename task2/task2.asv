@@ -67,17 +67,24 @@ while ischar(tline)
     charges(end + 1) = str2double(line_data(7));
 
     tline = fgetl(fid);
+
+    % Figure 5
+    bmi 
+    charge_tmp = str2double(line_data(7))
+
 end
 fclose(fid);
 
-
-% Figure 1 Max of
-
+% Figure 1 Min Charge of Each Age
 
 % Figure 2 Smoker Proportion
 
 % Figure 3 Regional Box chart
 
-% Figure 4 
+% Figure 4 Scatter of Smoker, BMI, and Children 
 
-% Figure 5 Scatter of Smoker, BMI, and Children 
+% Figure 5 Heatmap of Age, BMI, and Charge
+
+% age: (18, 64)
+% bmi: (15, 53)
+
