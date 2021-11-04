@@ -122,13 +122,11 @@ while ischar(tline)
             end
     end
 
-    % Figure 2
-
-    % Figure 3
-
     % Figure 4    
     if smoker_cur == 1
-        scatter(age_index - 17, bmi_index - 14) = 1;
+        scatter(end + 1) = 1;
+    else
+        scatter(end + 1) = 0;
     end
 
     % Figure 5
@@ -142,12 +140,61 @@ end
 fclose(fid);
 
 % Figure 1 Min Charge of Each Age
+%{
+hold all
+age_axis = 18:64;
+fig1 = bar(age_axis, female_charges);
+fig1 = bar(age_axis, male_charges);
+hold off
+
+labels = {'Female', 'Male'};
+lgd = legend(labels);
+%}
 
 % Figure 2 Smoker Proportion
+%{
+sm_data = [sum(male_smoker == 1); size(male_smoker, 2) - sum(male_smoker == 1)];
+sf_data = [sum(female_smoker == 1); size(female_smoker, 2) - sum(female_smoker == 1)];
+om_data = [sum(male_overweight == 1); size(male_overweight, 2) - sum(male_overweight == 1)];
+of_data = [sum(female_overweight == 1); size(female_overweight, 2) - sum(female_overweight == 1)];
+pies = tiledlayout(2, 2, 'TileSpacing', 'compact');
+
+sm = nexttile;
+pie(sm, sm_data);
+title('Male Smoker');
+
+sf = nexttile;
+pie(sf, sf_data);
+title('Female Smoker');
+
+om = nexttile;
+pie(om, om_data);
+title('Male Obesity');
+
+of = nexttile;
+pie(of, of_data);
+title('Female Obesity');
+%}
 
 % Figure 3 Regional Box chart
+box_data = [northeast_charges northwest_charges southeast_charges southwest_charges];
+box_group = [zeros(fliplr(size(northeast_charges))); ones(fliplr(size(northwest_charges))); 2*ones(fliplr(size(southeast_charges))); 3*ones(fliplr(size(southwest_charges)))]';
+boxchart(box_group, box_data);
 
-% Figure 4 Scatter of Smoker, BMI, and  
+% Figure 4 Scatter of Smoker, BMI, and Children
+%{
+scatter = scatter(2: end);
+z = scatter;
+x = children;
+y = bmis;
+scatter3(x, y, z, 'filled')
+view(-35, 5, 5)
+%}
 
 % Figure 5 Heatmap of Age, BMI, and Charge
-
+%{
+fig5 = heatmap((15:53), (18:64), heat);
+fig5.Title = 'Maximum Charges';
+fig5.XLabel = 'BMI';
+fig5.YLabel = 'Age';
+%}
