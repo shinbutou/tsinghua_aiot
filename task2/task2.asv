@@ -71,12 +71,13 @@ end
 fclose(fid);
 
 
-% Figure 1 Min Charge of Each Age
+% Figure 1 Max of
+
 
 % Figure 2 Smoker Proportion
 
 % Figure 3 Regional Box chart
 
-% Figure 4 Scatter of Smoker, BMI, and Children 
+% Figure 4 
 
-% Figure 5 Heatmap of Age, BMI, and Charge
+% Figure 5 Scatter of Smoker, BMI, and Children 
