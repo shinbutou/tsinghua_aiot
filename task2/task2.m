@@ -10,12 +10,12 @@ end
 fclose(fid);
 %}
 
-% Self-Written Version
-
+% DataFrame Version
+%{
 df_opts = detectImportOptions('insurance.csv');
 df = readtable('insurance.csv', df_opts);
 age = table2array(df(:,1));
-
+%}
 
 fid = fopen('./insurance.csv','r');
 tline = fgetl(fid);
@@ -140,7 +140,7 @@ end
 fclose(fid);
 
 % Figure 1 Min Charge of Each Age
-%{
+figure(1);
 hold all
 age_axis = 18:64;
 fig1 = bar(age_axis, female_charges);
@@ -149,10 +149,9 @@ hold off
 
 labels = {'Female', 'Male'};
 lgd = legend(labels);
-%}
 
 % Figure 2 Smoker Proportion
-%{
+figure(2);
 sm_data = [sum(male_smoker == 1); size(male_smoker, 2) - sum(male_smoker == 1)];
 sf_data = [sum(female_smoker == 1); size(female_smoker, 2) - sum(female_smoker == 1)];
 om_data = [sum(male_overweight == 1); size(male_overweight, 2) - sum(male_overweight == 1)];
@@ -174,27 +173,25 @@ title('Male Obesity');
 of = nexttile;
 pie(of, of_data);
 title('Female Obesity');
-%}
 
 % Figure 3 Regional Box chart
+figure(3);
 box_data = [northeast_charges northwest_charges southeast_charges southwest_charges];
 box_group = [zeros(fliplr(size(northeast_charges))); ones(fliplr(size(northwest_charges))); 2*ones(fliplr(size(southeast_charges))); 3*ones(fliplr(size(southwest_charges)))]';
 boxchart(box_group, box_data);
 
 % Figure 4 Scatter of Smoker, BMI, and Children
-%{
+figure(4);
 scatter = scatter(2: end);
 z = scatter;
 x = children;
 y = bmis;
-scatter3(x, y, z, 'filled')
-view(-35, 5, 5)
-%}
+scatter3(x, y, z, 'filled');
+view([35, 25, 15]);
 
 % Figure 5 Heatmap of Age, BMI, and Charge
-%{
+figure(5);
 fig5 = heatmap((15:53), (18:64), heat);
 fig5.Title = 'Maximum Charges';
 fig5.XLabel = 'BMI';
 fig5.YLabel = 'Age';
-%}

@@ -94,7 +94,7 @@ end
 %X = [ones(1338,1), ages', children', bmi', sexs', smokers', regions'];
 X = [ones(1038,1), age_train', smoker_train'];
 Y = charge_train;
-[b, bint] = regress(Y', X, 0.25); % b: coefficient; bint: coefficient bound 
+[b, bint] = regress(Y', X, 0.02); % b: coefficient; bint: coefficient bound 
 
 error = [];
 MSE = 0;
@@ -132,12 +132,9 @@ ylabel('Possibility of Error');
 figure(4);
 scatter3(ages, smokers, charges);
 title('Relationship between Premium, Age, and Smoker Or Not');
-%{
-hold all;
-x1_pred = 10: 1: 70;
-x2_pred = 0: 1: 2;
-[X1_pred, X2_pred] = meshgrid(x1_pred,x2_pred);
-Y_pred = b(3) * X2_pred + b(2) * X1_pred + b(1);
-mesh(Y_pred);
-hold off
-%}
+% hold on;
+% x1_pred = 10: 1: 70;
+% x2_pred = 0: 1: 2;
+% [X1_pred, X2_pred] = meshgrid(x1_pred,x2_pred);
+% Y_pred = b(3) * X2_pred + b(2) * X1_pred + b(1);
+% mesh(Y_pred);
