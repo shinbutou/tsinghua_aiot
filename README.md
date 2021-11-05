@@ -6,4 +6,4 @@ The repository is dedicated to a course at Tsinghua University.
 
 Most of the time spent on the assignment was to construct the machine learning script.
 ## Snapshot
-![]()
+![](./task2/figure5.png)
