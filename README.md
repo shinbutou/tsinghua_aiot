@@ -5,3 +5,5 @@ The repository is dedicated to a course at Tsinghua University.
 * Semester: Fall 2021
 
 Most of the time spent on the assignment was to construct the machine learning script.
+## Snapshot
+![]()
