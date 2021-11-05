@@ -107,7 +107,7 @@ for i = 1:300
     MSE = MSE + (charge_test(i) - charges_pred) ^ 2 / 300;
 end
 
-%RMSE = sqrt(MSE);
+RMSE = sqrt(MSE);
 
 figure(1);
 testset = [1: 300];
@@ -117,19 +117,12 @@ xlabel('Number of Tests');
 ylabel('Possibility of Error');
 
 figure(2);
-boxplot(error, smoker_test);
-title('Prediction Error Rate and Smoker Or Not');
-ylabel('Possibility of Error');
-set(gca, 'xticklabels', {'Smoker', 'Non-Smoker'});
-%set(gca, 'xticklabels', {'Smoker', 'Non-Smoker'}, 'FontWeight', 'bold', 'Fontsize', 14);
-
-figure(3);
 boxplot(error, age_test);
 title('Prediction Error Rate and Age');
 xlabel('Age');
 ylabel('Possibility of Error');
 
-figure(4);
+figure(3);
 scatter3(ages, smokers, charges);
 title('Relationship between Premium, Age, and Smoker Or Not');
 %{
@@ -141,3 +134,10 @@ Y_pred = b(3) * X2_pred + b(2) * X1_pred + b(1);
 mesh(Y_pred);
 hold off
 %}
+
+figure(4);
+boxplot(error, smoker_test);
+title('Prediction Error Rate and Smoker Or Not');
+ylabel('Possibility of Error');
+set(gca, 'xticklabels', {'Smoker', 'Non-Smoker'});
+%set(gca, 'xticklabels', {'Smoker', 'Non-Smoker'}, 'FontWeight', 'bold', 'Fontsize', 14);
